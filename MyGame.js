@@ -60,38 +60,41 @@ gameLoop();
 let Options = new Array();
 let Choices = new Array();
 class Rooms {
-  constructor(value, enemy) {
-    this.value = value;
-    this.enemy = enemy;
+  constructor(RoomValue, EnemyValue) {
+    this.RoomValue = RoomValue;
+    this.EnemyValue = EnemyValue;
   }
 
   async SettingRoomOptions() {
     for (let i = 0; i < TotalRoomNum; i++) {
       switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
         //First Room - one option (one doorway forward.)
-        case OurRooms[0].value:
-          Options = [];
-          Options.push({ title: OurRooms[1].value, value: OurRooms[1].value });
-          break;
-        //Last Room - one option (to exit the game)
-        case OurRooms[TotalRoomNum].value:
+        case OurRooms[0].RoomValue:
           Options = [];
           Options.push({
-            title: OurRooms[TotalRoomNum].value,
-            value: OurRooms[TotalRoomNum].value,
+            title: OurRooms[1].RoomValue,
+            value: OurRooms[1].RoomValue,
+          });
+          break;
+        //Last Room - one option (to exit the game)
+        case OurRooms[TotalRoomNum].RoomValue:
+          Options = [];
+          Options.push({
+            title: OurRooms[TotalRoomNum].RoomValue,
+            value: OurRooms[TotalRoomNum].RoomValue,
           });
           break;
         //Any Room (even 100th room) - twp options
-        case OurRooms[i].value:
+        case OurRooms[i].RoomValue:
           Options = [];
           Options.push(
             {
-              title: OurRooms[i + 1].value,
-              value: OurRooms[i + 1].value,
+              title: OurRooms[i + 1].RoomValue,
+              value: OurRooms[i + 1].RoomValue,
             },
             {
-              title: OurRooms[i - 1].value,
-              value: OurRooms[i - 1].value,
+              title: OurRooms[i - 1].RoomValue,
+              value: OurRooms[i - 1].RoomValue,
             }
           );
           break;
@@ -104,15 +107,15 @@ class Rooms {
       choices: Options,
     });
     CurrentRoomTracker.push(Response.value);
-    let R_Index = OurRooms.map((e) => e.value).indexOf(
+    let R_Index = OurRooms.map((e) => e.RoomValue).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
     console.log("you move to " + Response.value);
-    if (OurRooms[R_Index].enemy != undefined) {
+    if (OurRooms[R_Index].EnemyValue != undefined) {
       Myplayer.EnemyAttack();
       gameLoop();
     } else {
-      if (Response.value == OurRooms[TotalRoomNum].value) {
+      if (Response.value == OurRooms[TotalRoomNum].RoomValue) {
         console.log("WINNER !");
         process.exit();
       } else {
@@ -122,16 +125,16 @@ class Rooms {
   }
 
   async SettigEnemyOptions() {
-    let R_Index = OurRooms.map((e) => e.value).indexOf(
+    let R_Index = OurRooms.map((e) => e.RoomValue).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
-    if (OurRooms[R_Index].enemy != undefined) {
+    if (OurRooms[R_Index].EnemyValue != undefined) {
       switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
-        case OurRooms[R_Index].value:
+        case OurRooms[R_Index].RoomValue:
           Choices = [];
           Choices.push({
-            title: OurRooms[R_Index].enemy,
-            value: OurRooms[R_Index].enemy,
+            title: OurRooms[R_Index].EnemyValue,
+            value: OurRooms[R_Index].EnemyValue,
           });
           break;
       }
@@ -139,7 +142,7 @@ class Rooms {
       Choices = [];
       Choices.push({
         title: "No enemy! click to go back",
-        value: OurRooms[R_Index].enemy,
+        value: OurRooms[R_Index].EnemyValue,
       });
     }
     const Reply = await prompts({
@@ -150,12 +153,12 @@ class Rooms {
     });
 
     if (
-      OurRooms[R_Index].enemy !== undefined &&
-      Reply.value == OurRooms[R_Index].enemy
+      OurRooms[R_Index].EnemyValue !== undefined &&
+      Reply.value == OurRooms[R_Index].EnemyValue
     ) {
       console.log(
         "You bravely attacked " +
-          OurRooms[R_Index].enemy +
+          OurRooms[R_Index].EnemyValue +
           " with your sharp sword "
       );
       Myplayer.AttackingEnemy(2, 75);
@@ -165,33 +168,33 @@ class Rooms {
     }
   }
   LookAround() {
-    let R_Index = OurRooms.map((e) => e.value).indexOf(
+    let R_Index = OurRooms.map((e) => e.RoomValue).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
     // Frist room has one doorway. this condition is for such a purpose!
     if (R_Index == 0) {
       console.log(
         "\nYou are in " +
-          OurRooms[R_Index].value +
+          OurRooms[R_Index].RoomValue +
           " right now! \nThere are doorways leading to: \n" +
-          OurRooms[R_Index + 1].value
+          OurRooms[R_Index + 1].RoomValue
       );
     }
     //Any other room!
     else {
       console.log(
         "\nYou are in " +
-          OurRooms[R_Index].value +
+          OurRooms[R_Index].RoomValue +
           " right now! \nThere are doorways leading to: \n" +
-          OurRooms[R_Index + 1].value +
+          OurRooms[R_Index + 1].RoomValue +
           "\n" +
-          OurRooms[R_Index - 1].value
+          OurRooms[R_Index - 1].RoomValue
       );
     }
-    if (OurRooms[R_Index].enemy != undefined) {
+    if (OurRooms[R_Index].EnemyValue != undefined) {
       console.log(
         "\nThere is " +
-          OurRooms[R_Index].enemy +
+          OurRooms[R_Index].EnemyValue +
           " ready to attack you! Be careful"
       );
       Myplayer.EnemyAttack();
