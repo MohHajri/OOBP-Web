@@ -95,8 +95,6 @@ class Roomo {
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
     console.log("you move to " + Response.value);
-
-    console.log(R_Index);
     if (MyRoomo[R_Index].enemy != undefined) {
       Myplayer.EnemyAttack();
       gameLoop();
