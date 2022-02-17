@@ -162,6 +162,38 @@ class Roomo {
     }
   }
   LookAround() {
+    let R_Index = MyRoomo.map((e) => e.value).indexOf(
+      CurrentRoomTracker[CurrentRoomTracker.length - 1]
+    );
+    // Frist room has one doorway. this condition is for such a purpose!
+    if (R_Index == 0) {
+      console.log(
+        "\nYou are in " +
+          MyRoomo[R_Index].value +
+          " right now! \nThere are doorways leading to: \n" +
+          MyRoomo[R_Index + 1].value
+      );
+      //Any other room!
+    } else {
+      console.log(
+        "\nYou are in " +
+          MyRoomo[R_Index].value +
+          " right now! \nThere are doorways leading to: \n" +
+          MyRoomo[R_Index + 1].value +
+          "\n" +
+          MyRoomo[R_Index - 1].value
+      );
+
+      if (MyRoomo[R_Index].enemy != undefined) {
+        console.log(
+          "\nThere is " +
+            MyRoomo[R_Index].enemy +
+            " ready to attack you! Be careful"
+        );
+        Myplayer.EnemyAttack();
+      }
+    }
+    /*
     if (CurrentRoomTracker.length == 0) {
       console.log(
         "\nYou are in Dengon Entrance right now. \nThere are doors leading to: \nHallway"
@@ -192,6 +224,8 @@ class Roomo {
         console.log("Nothing is there !");
         break;
     }
+    gameLoop();
+    */
     gameLoop();
   }
 }
