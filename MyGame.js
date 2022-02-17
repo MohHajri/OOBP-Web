@@ -186,16 +186,16 @@ class Rooms {
           "\n" +
           OurRooms[R_Index - 1].value
       );
-
-      if (OurRooms[R_Index].enemy != undefined) {
-        console.log(
-          "\nThere is " +
-            OurRooms[R_Index].enemy +
-            " ready to attack you! Be careful"
-        );
-        Myplayer.EnemyAttack();
-      }
     }
+    if (OurRooms[R_Index].enemy != undefined) {
+      console.log(
+        "\nThere is " +
+          OurRooms[R_Index].enemy +
+          " ready to attack you! Be careful"
+      );
+      Myplayer.EnemyAttack();
+    }
+    // }
     gameLoop();
   }
 }
