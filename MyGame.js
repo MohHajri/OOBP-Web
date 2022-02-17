@@ -1,4 +1,14 @@
-// DONE!
+/* -Feature: PLayer is able to go back to the previous room
+and he/she will get attacked or attack if there is an ememy there.
+
+-Feature: PLayer, wanting to attack, will get an option of "No enemy, click to go back"
+if there is no enemy inside the room.
+*/
+
+/* 
+- new Rooms and its ememy can be added to MyRoomo array of objects
+- enemy properties can be added to OurPlayer array of objects.
+*/
 
 const prompts = require("prompts");
 let CurrentRoomTracker = new Array();
@@ -55,12 +65,12 @@ class Roomo {
   async SettingUpOptions() {
     for (let i = 0; i < TotalRoomNum; i++) {
       switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
-        //First Room - one option
+        //First Room - one option (one doorway forward.)
         case MyRoomo[0].value:
           Options = [];
           Options.push({ title: MyRoomo[1].value, value: MyRoomo[1].value });
           break;
-        //Last Room - one option
+        //Last Room - one option (to exit the game)
         case MyRoomo[TotalRoomNum].value:
           Options = [];
           Options.push({
