@@ -56,7 +56,7 @@ gameLoop();
 
 let Options = new Array();
 let Choices = new Array();
-class Roomo {
+class Rooms {
   constructor(value, enemy) {
     this.value = value;
     this.enemy = enemy;
@@ -197,15 +197,15 @@ class Roomo {
   }
 }
 
-let MyRooms = new Roomo();
+let MyRooms = new Rooms();
 let OurRooms = [
-  new Roomo("DengeonEntrance"),
-  new Roomo("Hallway", "Sewer Rat"),
-  new Roomo("Chamber", "Gaint Dragon"),
-  new Roomo("Portal"),
-  //new Roomo("Tunnel", "Dog"),
-  //new Roomo("Cave"),
-  //new Roomo("Bridge"),
+  new Rooms("DengeonEntrance"),
+  new Rooms("Hallway", "Sewer Rat"),
+  new Rooms("Chamber", "Gaint Dragon"),
+  new Rooms("Portal"),
+  //new Rooms("Tunnel", "Dog"),
+  //new Rooms("Cave"),
+  //new Rooms("Bridge"),
 ];
 let TotalRoomNum = OurRooms.length - 1;
 let PHP = 10;
