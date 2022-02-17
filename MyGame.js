@@ -196,7 +196,7 @@ let MyRoomo = [
   //new Roomo("Cave"),
   //new Roomo("Bridge"),
 ];
-let RoomNum = 3;
+let RoomNum = MyRoomo.length - 1;
 let PHP = 10;
 class Player {
   constructor(
