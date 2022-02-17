@@ -37,7 +37,7 @@ async function gameLoop() {
 
   switch (response.value) {
     case "goToRoom":
-      MyRooms.SettingUpOptions();
+      MyRooms.SettingRoomOptions();
       break;
     case "attack":
       MyRooms.SettigEnemyOptions();
@@ -65,7 +65,7 @@ class Rooms {
     this.enemy = enemy;
   }
 
-  async SettingUpOptions() {
+  async SettingRoomOptions() {
     for (let i = 0; i < TotalRoomNum; i++) {
       switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
         //First Room - one option (one doorway forward.)
