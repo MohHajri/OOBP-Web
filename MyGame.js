@@ -16,7 +16,6 @@ last room*/
 
 const prompts = require("prompts");
 let CurrentRoomTracker = new Array();
-let currentCommand = new Array();
 CurrentRoomTracker = ["DengeonEntrance"];
 async function gameLoop() {
   const initialActionChoices = [
@@ -32,9 +31,8 @@ async function gameLoop() {
     message: "Choose your action",
     choices: initialActionChoices,
   });
-  console.log("You selected " + response.value);
-  currentCommand.push(response.value);
 
+  console.log("You selected " + response.value);
   switch (response.value) {
     case "goToRoom":
       MyRooms.SettingRoomOptions();
