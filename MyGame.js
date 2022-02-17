@@ -194,11 +194,11 @@ let MyRoomo = [
   new Roomo("Hallway", "Sewer Rat"),
   new Roomo("Chamber", "Gaint Dragon"),
   new Roomo("Portal"),
-  new Roomo("Tunnel", "Dog"),
-  new Roomo("Cave"),
-  new Roomo("Bridge"),
+  //new Roomo("Tunnel", "Dog"),
+  //new Roomo("Cave"),
+  //new Roomo("Bridge"),
 ];
-let RoomNum = 6;
+let RoomNum = 3;
 let PHP = 10;
 class Player {
   constructor(
@@ -295,5 +295,5 @@ let Myplayer = new Player();
 let OurPlayer = [
   new Player("Hallway", "Sewer Rat", 1, 50, 2),
   new Player("Chamber", "Gaint Dragon", 8, 90, 4),
-  new Player("Tunnel", "Dog", 1, 30, 2),
+  //new Player("Tunnel", "Dog", 1, 30, 2),
 ];
