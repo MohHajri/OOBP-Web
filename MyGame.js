@@ -10,6 +10,10 @@ if there is no enemy inside the room.
 - the new enemy properties can be added to OurPlayer array of objects.
 */
 
+/* The game ends when the player reaches Portal (last room) 
+OR when the player hitpoints go to zero so enemies can not be added to the
+last room*/
+
 const prompts = require("prompts");
 let CurrentRoomTracker = new Array();
 let currentCommand = new Array();
@@ -40,7 +44,6 @@ async function gameLoop() {
       break;
     case "look":
       MyRooms.LookAround();
-
       break;
     case "exit":
       process.exit();
