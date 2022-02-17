@@ -61,11 +61,11 @@ class Roomo {
           Options.push({ title: MyRoomo[1].value, value: MyRoomo[1].value });
           break;
         //Last Room - one option
-        case MyRoomo[RoomNum].value:
+        case MyRoomo[TotalRoomNum].value:
           Options = [];
           Options.push({
-            title: MyRoomo[RoomNum].value,
-            value: MyRoomo[RoomNum].value,
+            title: MyRoomo[TotalRoomNum].value,
+            value: MyRoomo[TotalRoomNum].value,
           });
           break;
         //Any Room (even 100th room) - twp options
@@ -99,7 +99,7 @@ class Roomo {
       Myplayer.EnemyAttack();
       gameLoop();
     } else {
-      if (Response.value == MyRoomo[RoomNum].value) {
+      if (Response.value == MyRoomo[TotalRoomNum].value) {
         console.log("WINNER !");
         process.exit();
       } else {
@@ -196,7 +196,7 @@ let MyRoomo = [
   //new Roomo("Cave"),
   //new Roomo("Bridge"),
 ];
-let RoomNum = MyRoomo.length - 1;
+let TotalRoomNum = MyRoomo.length - 1;
 let PHP = 10;
 class Player {
   constructor(
