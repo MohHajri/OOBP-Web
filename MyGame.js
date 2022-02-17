@@ -196,7 +196,6 @@ class Rooms {
       );
       Myplayer.EnemyAttack();
     }
-    // }
     gameLoop();
   }
 }
