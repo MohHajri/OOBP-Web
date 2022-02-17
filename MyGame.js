@@ -193,39 +193,6 @@ class Roomo {
         Myplayer.EnemyAttack();
       }
     }
-    /*
-    if (CurrentRoomTracker.length == 0) {
-      console.log(
-        "\nYou are in Dengon Entrance right now. \nThere are doors leading to: \nHallway"
-      );
-    }
-    switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
-      case MyRoomo[0].value:
-        console.log(
-          "You are in Dengon Entrance right now. \nThere are doors leading to: \nHallway "
-        );
-        break;
-      case MyRoomo[1].value:
-        console.log(
-          "\nYou are in Hallway right now! \nThere are doorways leading to: \nChamber\nDungeon Entrance"
-        );
-        console.log("\nThere is Sewer Rat ready to attack you be careful");
-        Myplayer.EnemyAttack();
-        break;
-      case MyRoomo[2].value:
-        console.log(
-          "\nYou are in Chamber right now! There are doorways leading to: \nPortal \nHallway"
-        );
-        console.log("\nThere is Giant Dragon ready to attack you! Be careful");
-        Myplayer.EnemyAttack();
-        break;
-      //Any Room!
-      default:
-        console.log("Nothing is there !");
-        break;
-    }
-    gameLoop();
-    */
     gameLoop();
   }
 }
