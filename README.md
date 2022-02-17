@@ -1,7 +1,7 @@
 # OOBPgame
-Graded Exercise 1
+JS Text-based game
 
-creating a text based game, which is executed from the command line. 
+Creating a text based game, which is executed from the command line. 
 The game is a dungeon adventure where the player enters the DUNGEONS OF LORD OBJECT ORIENTUS!
 The game implementation should follow object oriented principles and use should the class structure of JavaScript and benefit from inheritance.
 
