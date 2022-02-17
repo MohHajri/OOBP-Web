@@ -53,7 +53,7 @@ class Roomo {
   }
 
   async SettingUpOptions() {
-    for (let i = 0; i < RoomNum; i++) {
+    for (let i = 0; i < TotalRoomNum; i++) {
       switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
         //First Room - one option
         case MyRoomo[0].value:
