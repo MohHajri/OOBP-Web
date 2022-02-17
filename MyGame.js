@@ -176,8 +176,9 @@ class Rooms {
           " right now! \nThere are doorways leading to: \n" +
           OurRooms[R_Index + 1].value
       );
-      //Any other room!
-    } else {
+    }
+    //Any other room!
+    else {
       console.log(
         "\nYou are in " +
           OurRooms[R_Index].value +
