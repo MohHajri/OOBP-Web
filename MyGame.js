@@ -7,7 +7,7 @@ if there is no enemy inside the room.
 
 /* 
 - new Rooms and its ememy can be added to MyRoomo array of objects
-- enemy properties can be added to OurPlayer array of objects.
+- the new enemy properties can be added to OurPlayer array of objects.
 */
 
 const prompts = require("prompts");
