@@ -6,7 +6,7 @@ if there is no enemy inside the room.
 */
 
 /* 
-- new Rooms and its ememy can be added to MyRoomo array of objects
+- new Rooms and its ememy can be added to OurRooms array of objects
 - the new enemy properties can be added to OurPlayer array of objects.
 */
 
@@ -66,29 +66,29 @@ class Roomo {
     for (let i = 0; i < TotalRoomNum; i++) {
       switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
         //First Room - one option (one doorway forward.)
-        case MyRoomo[0].value:
+        case OurRooms[0].value:
           Options = [];
-          Options.push({ title: MyRoomo[1].value, value: MyRoomo[1].value });
+          Options.push({ title: OurRooms[1].value, value: OurRooms[1].value });
           break;
         //Last Room - one option (to exit the game)
-        case MyRoomo[TotalRoomNum].value:
+        case OurRooms[TotalRoomNum].value:
           Options = [];
           Options.push({
-            title: MyRoomo[TotalRoomNum].value,
-            value: MyRoomo[TotalRoomNum].value,
+            title: OurRooms[TotalRoomNum].value,
+            value: OurRooms[TotalRoomNum].value,
           });
           break;
         //Any Room (even 100th room) - twp options
-        case MyRoomo[i].value:
+        case OurRooms[i].value:
           Options = [];
           Options.push(
             {
-              title: MyRoomo[i + 1].value,
-              value: MyRoomo[i + 1].value,
+              title: OurRooms[i + 1].value,
+              value: OurRooms[i + 1].value,
             },
             {
-              title: MyRoomo[i - 1].value,
-              value: MyRoomo[i - 1].value,
+              title: OurRooms[i - 1].value,
+              value: OurRooms[i - 1].value,
             }
           );
           break;
@@ -101,15 +101,15 @@ class Roomo {
       choices: Options,
     });
     CurrentRoomTracker.push(Response.value);
-    let R_Index = MyRoomo.map((e) => e.value).indexOf(
+    let R_Index = OurRooms.map((e) => e.value).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
     console.log("you move to " + Response.value);
-    if (MyRoomo[R_Index].enemy != undefined) {
+    if (OurRooms[R_Index].enemy != undefined) {
       Myplayer.EnemyAttack();
       gameLoop();
     } else {
-      if (Response.value == MyRoomo[TotalRoomNum].value) {
+      if (Response.value == OurRooms[TotalRoomNum].value) {
         console.log("WINNER !");
         process.exit();
       } else {
@@ -119,16 +119,16 @@ class Roomo {
   }
 
   async SettigEnemyOptions() {
-    let R_Index = MyRoomo.map((e) => e.value).indexOf(
+    let R_Index = OurRooms.map((e) => e.value).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
-    if (MyRoomo[R_Index].enemy != undefined) {
+    if (OurRooms[R_Index].enemy != undefined) {
       switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
-        case MyRoomo[R_Index].value:
+        case OurRooms[R_Index].value:
           Choices = [];
           Choices.push({
-            title: MyRoomo[R_Index].enemy,
-            value: MyRoomo[R_Index].enemy,
+            title: OurRooms[R_Index].enemy,
+            value: OurRooms[R_Index].enemy,
           });
           break;
       }
@@ -136,7 +136,7 @@ class Roomo {
       Choices = [];
       Choices.push({
         title: "No enemy! click to go back",
-        value: MyRoomo[R_Index].enemy,
+        value: OurRooms[R_Index].enemy,
       });
     }
     const Reply = await prompts({
@@ -147,12 +147,12 @@ class Roomo {
     });
 
     if (
-      MyRoomo[R_Index].enemy !== undefined &&
-      Reply.value == MyRoomo[R_Index].enemy
+      OurRooms[R_Index].enemy !== undefined &&
+      Reply.value == OurRooms[R_Index].enemy
     ) {
       console.log(
         "You bravely attacked " +
-          MyRoomo[R_Index].enemy +
+          OurRooms[R_Index].enemy +
           " with your sharp sword "
       );
       Myplayer.AttackingEnemy(2, 75);
@@ -162,32 +162,32 @@ class Roomo {
     }
   }
   LookAround() {
-    let R_Index = MyRoomo.map((e) => e.value).indexOf(
+    let R_Index = OurRooms.map((e) => e.value).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
     // Frist room has one doorway. this condition is for such a purpose!
     if (R_Index == 0) {
       console.log(
         "\nYou are in " +
-          MyRoomo[R_Index].value +
+          OurRooms[R_Index].value +
           " right now! \nThere are doorways leading to: \n" +
-          MyRoomo[R_Index + 1].value
+          OurRooms[R_Index + 1].value
       );
       //Any other room!
     } else {
       console.log(
         "\nYou are in " +
-          MyRoomo[R_Index].value +
+          OurRooms[R_Index].value +
           " right now! \nThere are doorways leading to: \n" +
-          MyRoomo[R_Index + 1].value +
+          OurRooms[R_Index + 1].value +
           "\n" +
-          MyRoomo[R_Index - 1].value
+          OurRooms[R_Index - 1].value
       );
 
-      if (MyRoomo[R_Index].enemy != undefined) {
+      if (OurRooms[R_Index].enemy != undefined) {
         console.log(
           "\nThere is " +
-            MyRoomo[R_Index].enemy +
+            OurRooms[R_Index].enemy +
             " ready to attack you! Be careful"
         );
         Myplayer.EnemyAttack();
@@ -198,7 +198,7 @@ class Roomo {
 }
 
 let MyRooms = new Roomo();
-let MyRoomo = [
+let OurRooms = [
   new Roomo("DengeonEntrance"),
   new Roomo("Hallway", "Sewer Rat"),
   new Roomo("Chamber", "Gaint Dragon"),
@@ -207,7 +207,7 @@ let MyRoomo = [
   //new Roomo("Cave"),
   //new Roomo("Bridge"),
 ];
-let TotalRoomNum = MyRoomo.length - 1;
+let TotalRoomNum = OurRooms.length - 1;
 let PHP = 10;
 class Player {
   constructor(
