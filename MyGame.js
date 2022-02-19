@@ -6,7 +6,7 @@ if there is no enemy inside the room.
 */
 
 /* 
-- new Rooms and its ememy can be added to OurRooms array of objects
+- new Rooms and its ememy and its dorways can be added to OurRooms array of objects
 - the new enemy properties can be added to OurPlayer array of objects.
 */
 
@@ -65,39 +65,20 @@ class Rooms {
 
   async SettingRoomOptions() {
     for (let i = 0; i < TotalRoomNum; i++) {
-      switch (CurrentRoomTracker[CurrentRoomTracker.length - 1]) {
-        //First Room - one option (one doorway forward.)
-        case OurRooms[0].RoomValue:
-          Options = [];
+      if (
+        CurrentRoomTracker[CurrentRoomTracker.length - 1] ==
+        OurRooms[i].RoomValue
+      ) {
+        Options = [];
+        for (let x = 0; x < OurRooms[i].doorways.length; x++) {
           Options.push({
-            title: OurRooms[1].RoomValue,
-            value: OurRooms[1].RoomValue,
+            title: OurRooms[OurRooms[i].doorways[x]].RoomValue,
+            value: OurRooms[OurRooms[i].doorways[x]].RoomValue,
           });
-          break;
-        //Last Room - one option (to exit the game)
-        case OurRooms[TotalRoomNum].RoomValue:
-          Options = [];
-          Options.push({
-            title: OurRooms[TotalRoomNum].RoomValue,
-            value: OurRooms[TotalRoomNum].RoomValue,
-          });
-          break;
-        //Any Room (even 100th room) - twp options
-        case OurRooms[i].RoomValue:
-          Options = [];
-          Options.push(
-            {
-              title: OurRooms[i + 1].RoomValue,
-              value: OurRooms[i + 1].RoomValue,
-            },
-            {
-              title: OurRooms[i - 1].RoomValue,
-              value: OurRooms[i - 1].RoomValue,
-            }
-          );
-          break;
+        }
       }
     }
+
     const Response = await prompts({
       type: "select",
       name: "value",
@@ -203,10 +184,10 @@ class Rooms {
 
 let MyRooms = new Rooms();
 let OurRooms = [
-  new Rooms("DengeonEntrance"),
-  new Rooms("Hallway", "Sewer Rat"),
-  new Rooms("Chamber", "Gaint Dragon"),
-  new Rooms("Portal"),
+  new Rooms("DengeonEntrance", [1]),
+  new Rooms("Hallway", [0, 2, 3], "Sewer Rat"),
+  new Rooms("Chamber", [0, 1, 3], "Gaint Dragon"),
+  new Rooms("Portal", [3]),
   //new Rooms("Tunnel", "Dog"),
   //new Rooms("Cave"),
   //new Rooms("Bridge"),
