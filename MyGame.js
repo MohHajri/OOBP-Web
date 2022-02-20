@@ -270,13 +270,6 @@ class Enemy {
       }
     }
   }
-
-  ExitGame() {
-    if (PHP <= 0) {
-      console.log("No Hitpoints. Ending the game!");
-      process.exit();
-    }
-  }
 }
 let MyEnemy = new Enemy();
 let OurEnemies = [
