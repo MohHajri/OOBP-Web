@@ -1,18 +1,8 @@
-/* -Feature: PLayer is able to go back to the previous room
-and he/she will get attacked or attack if there is an ememy there.
-
--Feature: PLayer, wanting to attack, will get an option of "No enemy, click to go back"
+/*-Feature: PLayer, wanting to attack, will get an option of "No enemy, click to go back"
 if there is no enemy inside the room.
-*/
-
-/* 
 - new Rooms and its ememy and its dorways can be added to OurRooms array of objects
 - the new enemy properties can be added to OurEnemies array of objects.
 */
-
-/* The game ends when the player reaches Portal (last room) 
-OR when the player hitpoints go to zero so enemies can not be added to the
-last room*/
 
 const prompts = require("prompts");
 let CurrentRoomTracker = new Array();
@@ -24,14 +14,12 @@ async function gameLoop() {
     { title: "Attack", value: "attack" },
     { title: "Exit game", value: "exit" },
   ];
-
   const response = await prompts({
     type: "select",
     name: "value",
     message: "Choose your action",
     choices: initialActionChoices,
   });
-
   console.log("You selected " + response.value);
   switch (response.value) {
     case "goToRoom":
@@ -52,7 +40,6 @@ console.log("WELCOME TO THE DUNGEONS OF LORD OBJECT ORIENTUS!");
 console.log("================================================");
 console.log("You walk down the stairs to the dungeons");
 gameLoop();
-
 let Options = new Array();
 let Choices = new Array();
 class Rooms {
@@ -199,7 +186,6 @@ class Enemy {
     this.EnemyHitChance = EnemyHitChance;
     this.EnemyHitPoint = EnemyHitPoint;
   }
-
   EnemyAttack() {
     let P_Index = OurEnemies.map((e) => e.RoomName).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
@@ -229,7 +215,6 @@ class Enemy {
       }
     }
   }
-
   AttackingEnemy(PA, PHC) {
     let P_Index = OurEnemies.map((e) => e.RoomName).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
