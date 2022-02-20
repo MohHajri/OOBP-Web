@@ -7,7 +7,7 @@ if there is no enemy inside the room.
 
 /* 
 - new Rooms and its ememy and its dorways can be added to OurRooms array of objects
-- the new enemy properties can be added to OurPlayer array of objects.
+- the new enemy properties can be added to OurEnemies array of objects.
 */
 
 /* The game ends when the player reaches Portal (last room) 
@@ -47,9 +47,7 @@ async function gameLoop() {
       process.exit();
   }
 }
-
 process.stdout.write("\033c"); // clear screen on windows
-
 console.log("WELCOME TO THE DUNGEONS OF LORD OBJECT ORIENTUS!");
 console.log("================================================");
 console.log("You walk down the stairs to the dungeons");
@@ -58,11 +56,11 @@ gameLoop();
 let Options = new Array();
 let Choices = new Array();
 class Rooms {
-  constructor(RoomValue, EnemyValue) {
+  constructor(RoomValue, doorways, EnemyValue) {
     this.RoomValue = RoomValue;
+    this.doorways = doorways;
     this.EnemyValue = EnemyValue;
   }
-
   async SettingRoomOptions() {
     for (let i = 0; i < TotalRoomNum; i++) {
       if (
@@ -78,7 +76,6 @@ class Rooms {
         }
       }
     }
-
     const Response = await prompts({
       type: "select",
       name: "value",
@@ -91,7 +88,7 @@ class Rooms {
     );
     console.log("you move to " + Response.value);
     if (OurRooms[R_Index].EnemyValue != undefined) {
-      Myplayer.EnemyAttack();
+      MyEnemy.EnemyAttack();
       gameLoop();
     } else {
       if (Response.value == OurRooms[TotalRoomNum].RoomValue) {
@@ -102,7 +99,6 @@ class Rooms {
       }
     }
   }
-
   async SettigEnemyOptions() {
     let R_Index = OurRooms.map((e) => e.RoomValue).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
@@ -140,7 +136,7 @@ class Rooms {
           OurRooms[R_Index].EnemyValue +
           " with your sharp sword "
       );
-      Myplayer.AttackingEnemy(2, 75);
+      MyEnemy.AttackingEnemy(2, 75);
       gameLoop();
     } else {
       gameLoop();
@@ -176,12 +172,11 @@ class Rooms {
           OurRooms[R_Index].EnemyValue +
           " ready to attack you! Be careful"
       );
-      Myplayer.EnemyAttack();
+      MyEnemy.EnemyAttack();
     }
     gameLoop();
   }
 }
-
 let MyRooms = new Rooms();
 let OurRooms = [
   new Rooms("DengeonEntrance", [1]),
@@ -194,7 +189,7 @@ let OurRooms = [
 ];
 let TotalRoomNum = OurRooms.length - 1;
 let PHP = 10;
-class Player {
+class Enemy {
   constructor(
     RoomName,
     EnemyName,
@@ -210,17 +205,19 @@ class Player {
   }
 
   EnemyAttack() {
-    let P_Index = OurPlayer.map((e) => e.RoomName).indexOf(
+    let P_Index = OurEnemies.map((e) => e.RoomName).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
     if (
-      OurPlayer[P_Index].EnemyHitPoint > 0 &&
+      OurEnemies[P_Index].EnemyHitPoint > 0 &&
       CurrentRoomTracker[CurrentRoomTracker.length - 1] ===
-        OurPlayer[P_Index].RoomName
+        OurEnemies[P_Index].RoomName
     ) {
-      if (Math.floor(Math.random() * 100) < OurPlayer[P_Index].EnemyHitChance) {
-        console.log("You got attacked by " + OurPlayer[P_Index].EnemyName);
-        PHP -= OurPlayer[P_Index].EnemyAttackDamage;
+      if (
+        Math.floor(Math.random() * 100) < OurEnemies[P_Index].EnemyHitChance
+      ) {
+        console.log("You got attacked by " + OurEnemies[P_Index].EnemyName);
+        PHP -= OurEnemies[P_Index].EnemyAttackDamage;
         console.log("You have " + PHP + " hit point(s) remaining");
         if (PHP > 0) {
           console.log("\n You did not die YET Keep up !");
@@ -231,48 +228,48 @@ class Player {
         }
       } else {
         console.log(
-          OurPlayer[P_Index].EnemyName + " didn't hit you this time! Bad Shot!"
+          OurEnemies[P_Index].EnemyName + " didn't hit you this time! Bad Shot!"
         );
       }
     }
   }
 
   AttackingEnemy(PA, PHC) {
-    let P_Index = OurPlayer.map((e) => e.RoomName).indexOf(
+    let P_Index = OurEnemies.map((e) => e.RoomName).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
     if (
       CurrentRoomTracker[CurrentRoomTracker.length - 1] ==
-      OurPlayer[P_Index].RoomName
+      OurEnemies[P_Index].RoomName
     ) {
       if (
         Math.floor(Math.random() * 100) < PHC &&
-        OurPlayer[P_Index].EnemyHitPoint > 0
+        OurEnemies[P_Index].EnemyHitPoint > 0
       ) {
-        console.log("You hit the " + OurPlayer[P_Index].EnemyName);
-        OurPlayer[P_Index].EnemyHitPoint -= PA;
+        console.log("You hit the " + OurEnemies[P_Index].EnemyName);
+        OurEnemies[P_Index].EnemyHitPoint -= PA;
         console.log(
           " The enemy now has " +
-            OurPlayer[P_Index].EnemyHitPoint +
+            OurEnemies[P_Index].EnemyHitPoint +
             " hit point(s)"
         );
       } else {
         if (
           Math.floor(Math.random() * 100) < PHC &&
-          OurPlayer[P_Index].EnemyHitPoint > 0
+          OurEnemies[P_Index].EnemyHitPoint > 0
         ) {
           console.log(" Attacking the enemy failed! not on spot!");
         }
       }
-      if (OurPlayer[P_Index].EnemyHitPoint > 0) {
+      if (OurEnemies[P_Index].EnemyHitPoint > 0) {
         console.log(
           "Enemy still has some hit points. Enemy is launching the strike NOW!"
         );
-        Myplayer.EnemyAttack();
+        MyEnemy.EnemyAttack();
       }
-      if (OurPlayer[P_Index].EnemyHitPoint <= 0) {
+      if (OurEnemies[P_Index].EnemyHitPoint <= 0) {
         console.log(
-          OurPlayer[P_Index].EnemyName + " is dead!. You can not attack !"
+          OurEnemies[P_Index].EnemyName + " is dead!. You can not attack !"
         );
       }
     }
@@ -285,9 +282,9 @@ class Player {
     }
   }
 }
-let Myplayer = new Player();
-let OurPlayer = [
-  new Player("Hallway", "Sewer Rat", 1, 50, 2),
-  new Player("Chamber", "Gaint Dragon", 8, 90, 4),
-  //new Player("Tunnel", "Dog", 1, 30, 2),
+let MyEnemy = new Enemy();
+let OurEnemies = [
+  new Enemy("Hallway", "Sewer Rat", 1, 50, 2),
+  new Enemy("Chamber", "Gaint Dragon", 8, 90, 4),
+  //new Enemy("Tunnel", "Dog", 1, 30, 2),
 ];
