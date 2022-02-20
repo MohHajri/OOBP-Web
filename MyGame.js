@@ -146,25 +146,21 @@ class Rooms {
     let R_Index = OurRooms.map((e) => e.RoomValue).indexOf(
       CurrentRoomTracker[CurrentRoomTracker.length - 1]
     );
-    // Frist room has one doorway. this condition is for such a purpose!
-    if (R_Index == 0) {
-      console.log(
-        "\nYou are in " +
-          OurRooms[R_Index].RoomValue +
-          " right now! \nThere are doorways leading to: \n" +
-          OurRooms[R_Index + 1].RoomValue
-      );
-    }
-    //Any other room!
-    else {
-      console.log(
-        "\nYou are in " +
-          OurRooms[R_Index].RoomValue +
-          " right now! \nThere are doorways leading to: \n" +
-          OurRooms[R_Index + 1].RoomValue +
-          "\n" +
-          OurRooms[R_Index - 1].RoomValue
-      );
+    for (let i = 0; i < TotalRoomNum; i++) {
+      if (
+        CurrentRoomTracker[CurrentRoomTracker.length - 1] ==
+        OurRooms[i].RoomValue
+      ) {
+        console.log(
+          "\nYou are in " +
+            OurRooms[R_Index].RoomValue +
+            " right now!\nThere are doorways leading to: \n"
+        );
+
+        for (let x = 0; x < OurRooms[i].doorways.length; x++) {
+          console.log(OurRooms[OurRooms[i].doorways[x]].RoomValue);
+        }
+      }
     }
     if (OurRooms[R_Index].EnemyValue != undefined) {
       console.log(
