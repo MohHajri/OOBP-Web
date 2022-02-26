@@ -1,3 +1,30 @@
+function AddDivs(MyData) {
+  for (let i = 0; i < MyData.length; i++) {
+    let cartrow = document.createElement("div");
+    cartrow.classList.add("single-perfume");
+    let cartitems = document.getElementsByClassName("container")[0];
+    let cartrowcontents = `
+          <div class="single-perfume-bg">
+            <img src="${MyData[i].PerfumeImage}" class="perfume-images" c />
+
+            <div class="perfume-cart">
+              <p> 
+                <a href="#"class="add-to-cart">add to cart</a>
+              </p>
+            </div>
+          </div>
+          <h4><a href="#">${MyData[i].PerfumeCompany}</a></h4>
+          <h4 class="perfume-name">${MyData[i].PerfumeName}</h4>
+          <h4>${MyData[i].PerfumeFrench}</h4>
+          <p class="perfume-price">${MyData[i].PerfumePrice}</p>
+  `;
+    cartrow.innerHTML = cartrowcontents;
+    cartitems.append(cartrow);
+    //console.log(cartrow);
+  }
+}
+AddDivs(MyData);
+
 if (document.readyState == "loading") {
   document.addEventListener("DOMContentLoaded", ready);
 } else {
@@ -126,3 +153,7 @@ const cartContainer = document.getElementsByClassName("cart-container")[0];
 document.getElementsByClassName("cart-btn")[0].addEventListener("click", () => {
   cartContainer.classList.toggle("show-cart-container");
 });
+
+/*   
+
+*/
