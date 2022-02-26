@@ -306,24 +306,10 @@ img {
   /*background: red;*/
 }
 
-/*  
-    related to the cart.css */
-/*
-.cart-page {
-  margin: 80px auto;
-}
-*/
 .table {
   width: 100%;
   border-collapse: collapse;
 }
-
-/*
-.cart-info {
-  display: flex;
-  flex-wrap: wrap;
-}
-*/
 
 .Cart-Header th {
   /*text-align: left;
