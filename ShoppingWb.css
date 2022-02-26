@@ -4,20 +4,6 @@ ul {
 a {
   text-decoration: none;
 }
-/*
-.badge:after {
-  content: attr(value);
-  font-size: 15px;
-  color: #fff;
-  background: black;
-  border-radius: 50%;
-  padding: 0 5px;
-  position: relative;
-  left: -8px;
-  top: -10px;
-  opacity: 0.9;
-}
-*/
 .badge {
   color: #fd9245;
 }
@@ -56,15 +42,6 @@ a {
   border-radius: 20px;
   color: white;
 }
-/*
-.left-icons a:hover {
-  background-color: #fd9245;
-  border: 1px solid #fd9245;
-  padding: 3px;
-  border-radius: 20px;
-  color: white;
-}
-*/
 
 .Hajri-logo {
   margin-left: 15px;
@@ -76,7 +53,6 @@ a {
   display: grid;
   grid-template: 1fr auto/ 1fr 1fr 1fr;
   margin-bottom: 20px;
-  /*position: fixed;*/
   width: 100%;
   top: 0;
   background-color: #f8f9fd;
@@ -116,11 +92,8 @@ a {
   border-right: hidden;
   margin-right: -30px;
   border: 1px solid black;
-  /*font-size: 8px;*/
-  /*font-family: "Raleway", sans-serif;*/
 }
 .searchButton {
-  /*flex: 300%;*/
   border-radius: 20px;
   border: 1px solid black;
   font-size: 10px;
@@ -168,12 +141,10 @@ p {
 img {
   max-width: 100%;
   height: 100%;
-  /*border: 2px yellow solid;*/
 }
 .single-perfume {
   margin: 30px 50px;
   text-align: center;
-  /*border: 2px red solid;*/
   height: 100%;
 }
 
@@ -185,7 +156,6 @@ img {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /*border: 2px blue solid;*/
 }
 
 .single-perfume-bg img {
@@ -270,8 +240,6 @@ img {
   height: 154px;
 }
 
-/* cart-container   */
-
 .cart-btn {
   position: relative;
 }
@@ -282,8 +250,6 @@ img {
   width: 60%;
   height: 600px;
   top: 150px;
-  /*top: 100%;*/
-  /*left: 0;*/
   right: 0;
   box-shadow: 0 3px 8px 1px rgba(0, 0, 0, 0.21);
   display: none;
@@ -303,7 +269,6 @@ img {
 /* js related class */
 .show-cart-container {
   display: block;
-  /*background: red;*/
 }
 
 .table {
@@ -312,8 +277,6 @@ img {
 }
 
 .Cart-Header th {
-  /*text-align: left;
-  padding: 5px;  */
   color: #fff;
   background-color: #ff523b;
   font-weight: normal;
