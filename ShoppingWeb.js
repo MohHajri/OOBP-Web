@@ -12,14 +12,14 @@ let MyData = [
     PerfumeCompany: "HUGO BOSS",
     PerfumeImage: "pics/BLEU-DE-CHANEL.jpg",
     PerfumeFrench: "Eau De Toilette Spray",
-    PerfumePrice: "£72.00",
+    PerfumePrice: "£50.00",
   },
   {
     PerfumeName: "CK One",
     PerfumeCompany: "Calvin Klein ",
     PerfumeImage: "pics/calvin-klein.jpg",
     PerfumeFrench: "Eau De Toilette Spray",
-    PerfumePrice: "£72.00",
+    PerfumePrice: "£29.00",
   },
   {
     PerfumeName: "Diamonds",
