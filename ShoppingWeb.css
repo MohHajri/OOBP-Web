@@ -318,3 +318,14 @@ td:last-child {
 th:last-child {
   text-align: right;
 }
+
+@media only screen and (max-width: 600px) {
+  .right-icons {
+    margin-left: 40px;
+  }
+  .right-icons ul {
+    padding-top: 15px;
+    gap: 50px;
+    font-size: 15px;
+  }
+}
