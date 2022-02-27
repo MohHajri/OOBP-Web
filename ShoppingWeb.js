@@ -10,7 +10,7 @@ let MyData = [
   {
     PerfumeName: "BOSS BOTTLED. NIGHT.",
     PerfumeCompany: "HUGO BOSS",
-    PerfumeImage: "pics/BLEU-DE-CHANEL.jpg",
+    PerfumeImage: "pics/BOSS-BOTTLED-NIGHT.jpg",
     PerfumeFrench: "Eau De Toilette Spray",
     PerfumePrice: "£50.00",
   },
