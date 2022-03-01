@@ -1,4 +1,4 @@
-//information is loaded this file
+//information is loaded this file.
 let MyDataList = [
   {
     PerfumeName: "BLEU DE CHANEL",
@@ -60,7 +60,8 @@ let MyDataList = [
     PerfumeImage: "pics/Homme.jpg",
     PerfumeFrench: "For Him Eau de Toilette 125ml Spray",
     PerfumePrice: "£25.00",
-    PerfumeDescription: "",
+    PerfumeDescription:
+      "oop! Homme is a very sensual, oriental fragrance with fresh citrus topnotes of mandarin, lemon, bergamot and orange blossom. The floral heart is very warm and balmy, revealing jasmine, lily of the valley, heliotrope and cinnamon. The exotic base introduces sweet and woodsy notes of vanilla, Tonka bean, patchouli and sandalwood. The fragrance was created by Michel Almairac in 1989.",
   },
   {
     PerfumeName: "Invictus",
@@ -107,8 +108,7 @@ function AddProductData(MyDataList) {
     let ProductDivsConainer = document.getElementsByClassName("container")[0];
     let CreatedDivcontents = `
           <div class="single-perfume-bg">
-            <img src="${MyDataList[i].PerfumeImage}" class="perfume-images" c />
-
+            <img src="${MyDataList[i].PerfumeImage}" class="perfume-images" />
             <div class="perfume-cart">
               <p> 
                 <a href="#"class="add-to-cart">add to cart</a>
@@ -138,6 +138,7 @@ function showDetailView(MyDataList) {
             src="${MyDataList.PerfumeImage}"
             alt=""
             id="productPic"
+             />
              </div>
         <div class="col-2">
           <p>Home / Perfume</p>
